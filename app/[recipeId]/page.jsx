@@ -7,6 +7,15 @@ export async function generateMetadata({ params }) {
   };
 }
 
+export async function generateStaticParams() {
+  const res = await fetch(`https://dummyjson.com/recipes`);
+  const recipes = await res.json();
+
+  return recipes.recipes.map((recipe) => ({
+    recipeId: recipe.id.toString(),
+  }));
+}
+
 const Recipe = async ({ params }) => {
   const { recipeId } = await params;
 
