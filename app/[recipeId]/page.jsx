@@ -19,9 +19,7 @@ export async function generateStaticParams() {
 const Recipe = async ({ params }) => {
   const { recipeId } = await params;
 
-  const res = await fetch(`https://dummyjson.com/recipes/${recipeId}`, {
-    next: { revalidate: 60 },
-  });
+  const res = await fetch(`https://dummyjson.com/recipes/${recipeId}`);
   const recipe = await res.json();
 
   return <h1 className="text-center text-bold p-20">{recipe.name}</h1>;
